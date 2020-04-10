@@ -30,11 +30,10 @@ export class AuthService {
   // https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY]
 
   autoLogoutTimer: number;
+
   urlPrefix = 'https://identitytoolkit.googleapis.com/v1/accounts';
   apiKey = 'AIzaSyAXZSI6Bux7O-fY2T0x1_Z6ANJzfVSivH8';
-
   user = new BehaviorSubject<User>(null);
-
 
   constructor(private http: HttpClient, private router: Router) { }
 
