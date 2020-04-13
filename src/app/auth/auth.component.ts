@@ -33,9 +33,11 @@ export class AuthComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(form: NgForm) {
-    console.log('AuthComponent: onSubmit: form: ', form);
+    //console.log('AuthComponent: onSubmit: form: ', form);
     this.isLoading = true;
-    if (form.invalid) return;
+    if (form.invalid) {
+      return;
+    }
 
     const { email, password } = form.value;
     let authObs: Observable<AuthResponseData>;
@@ -47,11 +49,11 @@ export class AuthComponent implements OnInit, OnDestroy {
     }
 
     authObs.subscribe(resData => {
-      console.log('AuthComponent: onSubmit: logIn resData: ', resData);
+      //console.log('AuthComponent: onSubmit: logIn resData: ', resData);
       this.isLoading = false;
       this.router.navigate(['/recipes']);
     }, errorMessage => {
-      console.log('AuthComponent: onSubmit: logIn errorMessage: ', errorMessage);
+      //console.log('AuthComponent: onSubmit: logIn errorMessage: ', errorMessage);
       this.error = errorMessage;
       this.showErrorAlert(errorMessage);
       this.isLoading = false;
