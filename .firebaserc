@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "pepper-recipe-book"
+  },
+  "targets": {
+    "pepper-recipe-book": {
+      "hosting": {
+        "recipe-app": [
+          "pepper-recipe-book"
+        ]
+      }
+    }
+  }
+}
