@@ -41,7 +41,8 @@ const handleAuthentication = (
     email,
     localId,
     idToken,
-    expiryDate
+    expiryDate,
+    redirect: true
   });
 };
 const handleError = (errorRes: any) => {
@@ -114,8 +115,10 @@ export class AuthEffects {
   @Effect({dispatch: false})
   authRedirect = this.actions$.pipe(
     ofType(AuthActions.AUTH_SUCCESS),
-    tap(() => {
-      this.router.navigate(['/']);
+    tap((authSuccessAction: AuthActions.AuthSuccess) => {
+      if (authSuccessAction.payload.redirect) {
+        this.router.navigate(['/']);
+      }
     })
   );
 
@@ -140,7 +143,8 @@ export class AuthEffects {
           email: loadedUser.email,
           localId: loadedUser.id,
           idToken: loadedUser.token,
-          expiryDate: new Date(userData._tokenExpiryDate)
+          expiryDate: new Date(userData._tokenExpiryDate),
+          redirect: false,
         });
       }
       return { type: 'DUMMY' };
